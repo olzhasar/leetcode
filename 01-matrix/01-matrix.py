@@ -10,7 +10,7 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 if mat[i][j] == 0:
-                    queue.append((i, j, 0))
+                    queue.append((i, j))
         
         def get_adj_cells(row, col):
             directions = (
@@ -25,12 +25,16 @@ class Solution:
             
         def append_adj(row, col, dist):
             for x, y in get_adj_cells(row, col):
-                queue.append((x, y, dist))
+                queue.append((x, y))
         
+        dist = 0
+
         while queue:
-            x, y, dist = queue.popleft()
-            if output[x][y] > dist:
-                output[x][y] = dist
-                append_adj(x, y, dist + 1)
+            for _ in range(len(queue)):
+                x, y = queue.popleft()
+                if output[x][y] > dist:
+                    output[x][y] = dist
+                    append_adj(x, y, dist + 1)
+            dist += 1
                 
         return output
