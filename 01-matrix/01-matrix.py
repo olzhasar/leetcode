@@ -23,7 +23,7 @@ class Solution:
                 if 0 <= row + drow < m and 0 <= col + dcol < n:
                     yield row + drow, col + dcol
             
-        def append_adj(row, col, dist):
+        def append_adj(row, col):
             for x, y in get_adj_cells(row, col):
                 queue.append((x, y))
         
@@ -34,7 +34,7 @@ class Solution:
                 x, y = queue.popleft()
                 if output[x][y] > dist:
                     output[x][y] = dist
-                    append_adj(x, y, dist + 1)
+                    append_adj(x, y)
             dist += 1
                 
         return output
