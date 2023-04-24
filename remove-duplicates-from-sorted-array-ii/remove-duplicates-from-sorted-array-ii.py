@@ -2,9 +2,8 @@ class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         counter = 1
         k = 1
-        prev = nums[0]
-        for n in nums[1:]:
-            if n == prev:
+        for i, n in enumerate(nums[1:]):
+            if n == nums[i]:
                 counter += 1
             else:
                 counter = 1
