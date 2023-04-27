@@ -7,11 +7,6 @@ class Solution:
 
         while i < j:
             for s in range(j - i):
-                tmp = matrix[i][i + s]
-                matrix[i][i + s] = matrix[j - s][i]
-                matrix[j - s][i] = matrix[j][j - s]
-                matrix[j][j - s] = matrix[i + s][j]
-                matrix[i + s][j] = tmp
-
+                matrix[i][i + s], matrix[j - s][i], matrix[j][j - s], matrix[i + s][j] = matrix[j - s][i], matrix[j][j - s], matrix[i + s][j], matrix[i][i + s]
             i += 1
             j -= 1
