@@ -18,7 +18,7 @@ class Solution:
                 continue
             result[node] = curr_time
 
-            for time, target in adj_list.get(node, []):
+            for time, target in adj_list[node]:
                 t = time + curr_time 
                 if t < result[target]:
                     heapq.heappush(min_heap, (time + curr_time, target))
