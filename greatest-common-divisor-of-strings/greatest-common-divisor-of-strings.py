@@ -7,21 +7,10 @@ class Solution:
                 continue
 
             val = str1[:l]
-            k = 0
-            failed = False
 
-            while k + l <= len_1 or k + l <= len_2:
-                if k + l <= len_1:
-                    if str1[k: k + l] != val:
-                        failed = True
-                        break
-                if k + l <= len_2:
-                    if str2[k: k + l] != val:
-                        failed = True
-                        break
-                k += l
+            n1, n2 = len_1 // l, len_2 // l
 
-            if not failed:
+            if str1 == n1 * val and str2 == n2 * val:
                 return val
                         
         return ""
