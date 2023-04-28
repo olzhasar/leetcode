@@ -1,11 +1,10 @@
-from collections import defaultdict
-
-
 class Solution:
     def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
-        counter = defaultdict(lambda: 0)
+        s1, s2 = set(nums1), set(nums2)
 
-        result = [[], []]
+        result = [list(s1 - s2), list(s2 - s1)]
+
+        return result
 
         for n in set(nums1):
             counter[n] += 1
