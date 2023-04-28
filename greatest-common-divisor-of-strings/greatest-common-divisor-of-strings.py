@@ -6,21 +6,22 @@ class Solution:
             if len_1 % l != 0 or len_2 % l != 0:
                 continue
 
+            val = str1[:l]
             k = 0
             failed = False
 
             while k + l <= len_1 or k + l <= len_2:
                 if k + l <= len_1:
-                    if str1[k: k + l] != str1[:l]:
+                    if str1[k: k + l] != val:
                         failed = True
                         break
                 if k + l <= len_2:
-                    if str2[k: k + l] != str1[:l]:
+                    if str2[k: k + l] != val:
                         failed = True
                         break
                 k += l
 
             if not failed:
-                return str1[:l]
+                return val
                         
         return ""
