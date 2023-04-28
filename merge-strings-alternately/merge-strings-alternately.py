@@ -9,8 +9,14 @@ class Solution:
             if l < len_1:
                 output += word1[l]
                 l += 1
+            else:
+                output += word2[r:]
+                break
             if r < len_2:
                 output += word2[r]
                 r += 1
+            else:
+                output += word1[l:]
+                break
 
         return output
