@@ -12,8 +12,6 @@ class HitCounter:
             self.store.append((timestamp, 1))
 
     def getHits(self, timestamp: int) -> int:
-        print(self.store)
-
         while self.store and self.store[0][0] <= timestamp - 300:
             self.store.popleft()
 
