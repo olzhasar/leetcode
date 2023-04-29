@@ -9,8 +9,8 @@ class Solution:
             digits.append(x % 10)
             x = x // 10
 
-        for i, digit in enumerate(digits):
-            x = x * 10 + digit
+        for i, digit in enumerate(reversed(digits)):
+            x += digit * (10 ** i)
 
         if negative:
             x = -x
