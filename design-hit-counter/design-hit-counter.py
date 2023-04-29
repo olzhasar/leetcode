@@ -1,22 +1,18 @@
-from collections import defaultdict
+from collections import deque
 
 
 class HitCounter:
-
     def __init__(self):
-        self.store = defaultdict(lambda: 0)
+        self.store = deque()
 
     def hit(self, timestamp: int) -> None:
-        self.store[timestamp] += 1
+        self.store.append(timestamp)
 
     def getHits(self, timestamp: int) -> int:
-        start = timestamp - 299
-        
-        count = 0
-        for i in range(start, timestamp + 1):
-            count += self.store[i]
+        while self.store and self.store[0] <= timestamp - 300:
+            self.store.popleft()
 
-        return count
+        return len(self.store)
 
 
 # Your HitCounter object will be instantiated and called as such:
