@@ -6,13 +6,18 @@ class HitCounter:
         self.store = deque()
 
     def hit(self, timestamp: int) -> None:
-        self.store.append(timestamp)
+        if self.store and self.store[-1][0] == timestamp:
+            self.store[-1] = (timestamp, self.store[-1][1] + 1)
+        else:
+            self.store.append((timestamp, 1))
 
     def getHits(self, timestamp: int) -> int:
-        while self.store and self.store[0] <= timestamp - 300:
+        print(self.store)
+
+        while self.store and self.store[0][0] <= timestamp - 300:
             self.store.popleft()
 
-        return len(self.store)
+        return sum(val[1] for val in self.store)
 
 
 # Your HitCounter object will be instantiated and called as such:
