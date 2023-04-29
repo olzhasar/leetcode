@@ -10,14 +10,11 @@ class Solution:
         
         longest = 0
 
-        current = ""
-
-        while r < len(s):
-            if s[r] in current:
+        while r < length:
+            if s[r] in s[l:r]:
                 while s[l] != s[r]:
                     l += 1
                 l += 1
-            current = s[l:r + 1]
             longest = max(longest, r - l + 1)
             r += 1
 
