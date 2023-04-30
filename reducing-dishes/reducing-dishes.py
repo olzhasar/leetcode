@@ -8,6 +8,8 @@ class Solution:
             current = 0
             for i, s in enumerate(satisfaction[start:]):
                 current += (i + 1) * s
-            max_possible = max(current, max_possible)
+            if current < max_possible:
+                break
+            max_possible = current
 
         return max(max_possible, 0)
