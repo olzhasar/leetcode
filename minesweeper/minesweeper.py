@@ -4,6 +4,8 @@ class Solution:
         n = len(board[0])
 
         def get_adj_cells(r, c):
+            result = []
+
             directions = (
                 (1, 0),
                 (-1, 0),
@@ -17,7 +19,9 @@ class Solution:
 
             for dr, dc in directions:
                 if 0 <= r + dr < m and 0 <= c + dc < n:
-                    yield r + dr, c + dc
+                    result.append((r + dr, c + dc)) 
+
+            return result
 
         def reveal(r, c, initial=False):
             if board[r][c] == 'M':
@@ -29,13 +33,15 @@ class Solution:
                 return
 
             adj_mines = 0
-            for ar, ac in get_adj_cells(r, c):
+            adj_cells = get_adj_cells(r, c)
+
+            for ar, ac in adj_cells:
                 if board[ar][ac] == 'M':
                     adj_mines += 1
 
             if adj_mines == 0:
                 board[r][c] = 'B'
-                for ar, ac in get_adj_cells(r, c):
+                for ar, ac in adj_cells:
                     reveal(ar, ac)
             else:
                 board[r][c] = str(adj_mines)
