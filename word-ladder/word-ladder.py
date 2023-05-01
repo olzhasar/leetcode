@@ -26,8 +26,6 @@ class Solution:
 
         while queue:
             idx, acc_count = queue.popleft()
-            if idx in visited:
-                continue
             visited.add(idx)
             if wordList[idx] == endWord:
                 return acc_count
