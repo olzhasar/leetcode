@@ -6,32 +6,33 @@ class Solution:
         paths = defaultdict(list)
 
         wordList.append(beginWord)
+        n = len(wordList)
 
-        for i, source in enumerate(wordList):
-            for j, word in enumerate(wordList[i:]):
+        for i in range(n):
+            for j in range(i + 1, n):
                 diff_count = 0
-                for char1, char2 in zip(source, word):
+                for char1, char2 in zip(wordList[i], wordList[j]):
                     if char1 != char2:
                         diff_count += 1
                         if diff_count > 1:
                             break
                 if diff_count == 1:
-                    paths[source].append(word)
-                    if source != beginWord:
-                        paths[word].append(source)
+                    paths[i].append(j)
+                    if i != n - 1:
+                        paths[j].append(i)
 
-        queue = deque([(beginWord, 1)])
+        queue = deque([(n - 1, 1)])
         visited = set()
 
         while queue:
-            word, acc_count = queue.popleft()
-            if word in visited:
+            idx, acc_count = queue.popleft()
+            if idx in visited:
                 continue
-            visited.add(word)
-            if word == endWord:
+            visited.add(idx)
+            if wordList[idx] == endWord:
                 return acc_count
             
-            for path in paths[word]:
+            for path in paths[idx]:
                 if path not in visited:
                     queue.append((path, acc_count + 1))
 
