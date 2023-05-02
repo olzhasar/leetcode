@@ -1,6 +1,9 @@
+from collections import deque
+
+
 class MinStack:
     def __init__(self):
-        self.stack = []
+        self.stack = deque()
 
     def push(self, val: int) -> None:
         if not self.stack:
