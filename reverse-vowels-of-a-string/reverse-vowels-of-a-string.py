@@ -5,7 +5,7 @@ class Solution:
         l = 0
         r = len(s) - 1
 
-        output = [""] * (r + 1)
+        output = [None] * (r + 1)
 
         while l <= r:
             if l == r:
