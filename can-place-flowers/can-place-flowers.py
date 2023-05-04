@@ -10,6 +10,8 @@ class Solution:
                 if i < l - 1 and flowerbed[i + 1] == 1:
                     continue
                 k += 1
+                if k >= n:
+                    return True
                 flowerbed[i] = 1
 
         return k >= n
