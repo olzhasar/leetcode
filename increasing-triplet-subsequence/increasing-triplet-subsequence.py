@@ -2,7 +2,7 @@ class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
         n = len(nums)
 
-        mins, maxs = [float("inf")] * n, [float("-inf")] * n
+        mins, maxs = [0] * n, [0] * n
         min_so_far, max_so_far = nums[0], nums[n - 1]
 
         for i in range(n):
