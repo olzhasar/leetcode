@@ -3,8 +3,8 @@ class Solution:
         k = 0
         l = len(flowerbed)
 
-        for i, f in enumerate(flowerbed):
-            if f == 0:
+        for i in range(l):
+            if flowerbed[i] == 0:
                 if i > 0 and flowerbed[i - 1] == 1:
                     continue
                 if i < l - 1 and flowerbed[i + 1] == 1:
