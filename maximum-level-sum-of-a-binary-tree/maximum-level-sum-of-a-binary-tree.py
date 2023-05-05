@@ -18,9 +18,6 @@ class Solution:
             for _ in range(len(queue)):
                 node = queue.popleft()
 
-                if not node:
-                    continue
-
                 current_sum += node.val
 
                 if node.left:
