@@ -3,10 +3,12 @@ from collections import Counter
 
 class Solution:
     def uniqueOccurrences(self, arr: List[int]) -> bool:
-        occurences = sorted(Counter(arr).values())
+        occurences = Counter(arr).values()
+        existing = set()
 
-        for i in range(1, len(occurences)):
-            if occurences[i] == occurences[i - 1]:
+        for val in occurences:
+            if val in existing:
                 return False
+            existing.add(val)
 
         return True
