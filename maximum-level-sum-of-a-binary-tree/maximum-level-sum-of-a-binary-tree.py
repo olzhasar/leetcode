@@ -9,9 +9,9 @@ from collections import deque
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
         queue = deque([root])
-        level = 0
-        max_sum = float("-inf")
+        level = 1
         current_level = 1
+        max_sum = float("-inf")
 
         while queue:
             current_sum = 0
