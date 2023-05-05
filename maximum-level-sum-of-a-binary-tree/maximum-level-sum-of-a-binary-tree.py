@@ -11,7 +11,7 @@ class Solution:
         queue = deque([root])
         level = 1
         current_level = 1
-        max_sum = float("-inf")
+        max_sum = root.val
 
         while queue:
             current_sum = 0
