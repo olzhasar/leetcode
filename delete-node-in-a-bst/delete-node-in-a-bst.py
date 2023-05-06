@@ -24,18 +24,18 @@ class Solution:
             while smallest and smallest.left:
                 smallest = smallest.left
             smallest.left = node.left
-            new = node.right
+            node = node.right
         elif node.left:
-            new = node.left
+            node = node.left
         else:
-            new = node.right
+            node = node.right
         
         if not parent:
-            return new
+            return node
         
         if key > parent.val:
-            parent.right = new
+            parent.right = node
         else:
-            parent.left = new
+            parent.left = node
 
         return root
