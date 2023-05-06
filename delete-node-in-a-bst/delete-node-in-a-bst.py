@@ -20,10 +20,10 @@ class Solution:
             return root
 
         if node.left and node.right:
-            smallest = node.right
-            while smallest and smallest.left:
-                smallest = smallest.left
-            smallest.left = node.left
+            right_smallest = node.right
+            while right_smallest and right_smallest.left:
+                right_smallest = right_smallest.left
+            right_smallest.left = node.left
             node = node.right
         elif node.left:
             node = node.left
