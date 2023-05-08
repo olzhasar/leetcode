@@ -10,7 +10,7 @@ class Solution:
 
         odd = head
         even = head.next
-        even_root = head.next
+        tail = head.next
 
         while even and even.next:
             odd.next = even.next
@@ -19,6 +19,6 @@ class Solution:
             odd = odd.next
             even = even.next
 
-        odd.next = even_root
+        odd.next = tail
 
         return head
