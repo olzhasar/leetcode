@@ -11,10 +11,10 @@ class Solution:
         def dfs(node):
             if not node:
                 return
-            vals.append(node.val)
             dfs(node.left)
+            vals.append(node.val)
             dfs(node.right)
 
         dfs(root)
                 
-        return sorted(vals)[k - 1]
+        return vals[k - 1]
