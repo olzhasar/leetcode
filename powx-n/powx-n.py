@@ -12,6 +12,7 @@ class Solution:
                 res *= x
             return res
 
-        res = pow(x, abs(n))
+        if n < 0:
+            x = 1 / x
 
-        return res if n >= 0 else 1 / res
+        return pow(x, abs(n))
