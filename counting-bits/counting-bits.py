@@ -1,9 +1,5 @@
-import functools
-
-
 class Solution:
     def countBits(self, n: int) -> List[int]:
-        @functools.lru_cache
         def num_bits(n):
             count = 0
             while n > 0:
