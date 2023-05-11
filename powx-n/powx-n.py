@@ -7,7 +7,10 @@ class Solution:
                 return x
 
             res = pow(x, n // 2)
-            return res * res * pow(x, n % 2)
+            res *= res
+            if n % 2 != 0:
+                res *= x
+            return res
 
         res = pow(x, abs(n))
 
