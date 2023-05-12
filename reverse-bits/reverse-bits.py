@@ -6,7 +6,7 @@ class Solution:
         while n:
             if n & 1 == 1:
                 result += 2 ** power
-            n //= 2
+            n = n >> 1
             power -= 1
 
         return result
