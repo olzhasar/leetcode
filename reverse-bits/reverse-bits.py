@@ -3,7 +3,7 @@ class Solution:
         result = 0
 
         i = 0
-        while i < 32 and n > 0:
+        while n > 0:
             if n % 2 == 1:
                 result += 2 ** (31 - i)
             n //= 2
