@@ -11,13 +11,11 @@ class Solution:
             output = []
 
             for row in board:
-                row_str = ""
-                for val in row:
+                row_str = ["."] * n
+                for i, val in enumerate(row):
                     if val == 1:
-                        row_str += "Q"
-                    else:
-                        row_str += "."
-                output.append(row_str)
+                        row_str[i] = "Q"
+                output.append("".join(row_str))
 
             result.append(output)
 
