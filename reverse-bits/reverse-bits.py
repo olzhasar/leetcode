@@ -4,7 +4,7 @@ class Solution:
 
         i = 0
         while n > 0:
-            if n % 2 == 1:
+            if n & 1 == 1:
                 result += 2 ** (31 - i)
             n //= 2
             i += 1
