@@ -5,16 +5,18 @@ class Solution:
         x = abs(x)
         lim = 214748364
         
-        while x:
+        while x >= 10:
             r = r * 10 + x % 10
             x //= 10
-            if r >= lim and x:
-                if r > lim:
-                    return 0
-                if negative and x >= 8:
-                    return 0
-                elif not negative and x >= 7:
-                    return 0
+
+        if r >= lim and x:
+            if r > lim:
+                return 0
+
+            if x > 8 or (not negative and x > 7):
+                return 0
+
+        r = r * 10 + x % 10
 
         if negative:
             return -r
