@@ -1,21 +1,21 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        digits = []
+        r = 0
         negative = x < 0
-
         x = abs(x)
-
+        lim = 214748364
+        
         while x:
-            digits.append(x % 10)
-            x = x // 10
-
-        for i, digit in enumerate(reversed(digits)):
-            x += digit * (10 ** i)
+            r = r * 10 + x % 10
+            x //= 10
+            if r >= lim and x:
+                if r > lim:
+                    return 0
+                if negative and x >= 8:
+                    return 0
+                elif not negative and x >= 7:
+                    return 0
 
         if negative:
-            x = -x
-
-        if x <= -2**31 or x >= 2**31 - 1:
-            return 0
-
-        return x
+            return -r
+        return r
