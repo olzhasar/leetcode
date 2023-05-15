@@ -6,7 +6,6 @@ class BoundedBlockingQueue(object):
 
     def __init__(self, capacity: int):
         self._capacity = capacity
-        self._size = 0
         self.queue = deque()
         self.cv = threading.Condition()
         
