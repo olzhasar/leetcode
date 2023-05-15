@@ -3,10 +3,10 @@ from collections import deque
 
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
-        stack = [(0, heights[0])]
-        max_area = heights[0]
+        stack = []
+        max_area = 0
 
-        for i in range(1, len(heights)):
+        for i in range(len(heights)):
             j = i
 
             while stack and stack[-1][1] > heights[i]:
