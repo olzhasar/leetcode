@@ -13,21 +13,21 @@ class BoundedBlockingQueue(object):
 
     def enqueue(self, element: int) -> None:
         with self.cv:
-            while self._size >= self._capacity:
+            while self._capacity <= 0:
                 self.cv.wait()
             self.queue.appendleft(element)
-            self._size += 1
+            self._capacity -= 1
             self.cv.notify_all()
 
     def dequeue(self) -> int:
         with self.cv:
-            while self._size <= 0:
+            while not self.queue:
                 self.cv.wait()
             val = self.queue.pop()
-            self._size -= 1
+            self._capacity += 1
             self.cv.notify_all()
             
         return val
         
     def size(self) -> int:
-        return self._size
+        return len(self.queue)
