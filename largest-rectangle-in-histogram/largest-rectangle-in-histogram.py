@@ -6,7 +6,9 @@ class Solution:
         stack = []
         max_area = 0
 
-        for i in range(len(heights)):
+        i = 0
+
+        while i < len(heights):
             j = i
 
             while stack and stack[-1][1] > heights[i]:
@@ -15,10 +17,10 @@ class Solution:
 
             stack.append((j, heights[i]))
 
-        l = len(heights)
+            i += 1
 
         while stack:
             j, h = stack.pop()
-            max_area = max(max_area, (l - j) * h)
+            max_area = max(max_area, (i - j) * h)
 
         return max_area
