@@ -12,23 +12,16 @@ class Node:
 
 class Solution:
     def construct(self, grid: List[List[int]]) -> 'Node':
-        def helper(r, c, n) -> 'Node':
-            node = Node(grid[r][c] == 1, True, None, None, None, None)
-            if n <= 1:
-                return node
-            
-            all_same = True
-            values = {grid[r][c]}
-            
+        def all_same(r, c, n):
             for xr in range(r, r + n):
                 for xc in range(c, c + n):
-                    if grid[xr][xc] not in values:
-                        all_same = False
-                        break
-                if not all_same:
-                    break
-                       
-            if all_same:
+                    if grid[xr][xc] != grid[r][c]:
+                        return False
+            return True
+
+        def helper(r, c, n) -> 'Node':
+            node = Node(grid[r][c] == 1, True, None, None, None, None)
+            if n <= 1 or all_same(r, c, n):
                 return node
             
             n = n // 2
