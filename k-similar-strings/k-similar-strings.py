@@ -4,7 +4,6 @@ from collections import deque
 class Solution:
     def kSimilarity(self, s1: str, s2: str) -> int:
         queue = deque([s1])
-        length = len(s1)
         visited = {s1}
         k = 0
 
@@ -20,7 +19,7 @@ class Solution:
                 while current[i] == s2[i]:
                     i += 1
 
-                for j in range(i, length):
+                for j in range(i, len(s1)):
                     if current[j] == s2[i]:
                         new_state = current[:i] + current[j] + current[i + 1:j] + current[i] + current[j + 1:]
                         if new_state not in visited:
