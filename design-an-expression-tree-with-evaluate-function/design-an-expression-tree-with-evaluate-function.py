@@ -50,8 +50,7 @@ class TreeBuilder(object):
             if val.isnumeric():
                 node = TreeNode(val)
             else:
-                right, left = stack.pop(), stack.pop()
-                node = TreeNode(val, left=left, right=right)
+                node = TreeNode(val, right=stack.pop(), left=stack.pop())
             stack.append(node)
         
         return stack[0]
