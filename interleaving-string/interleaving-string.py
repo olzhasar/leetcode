@@ -2,7 +2,7 @@ import functools
 
 
 class Solution:
-    @functools.lru_cache
+    @functools.cache
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
         if not s1 and not s2 and not s3:
             return True
