@@ -6,10 +6,9 @@ class Solution:
         if n <= 2:
             return 1
 
-        one, two, three = 0, 1, 1
+        a, b, c = 0, 1, 1
 
         for _ in range(3, n + 1):
-            result = one + two + three
-            one, two, three = two, three, result
+            a, b, c = b, c, a + b + c
 
-        return result
+        return c
