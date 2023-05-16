@@ -1,14 +1,10 @@
-import functools
-
-
 class Solution:
     def tribonacci(self, n: int) -> int:
-        @functools.cache
+        cache = {0: 0, 1: 1, 2: 1}
+
         def helper(n):
-            if n == 0:
-                return 0
-            if n <= 2:
-                return 1
-            return helper(n - 1) + helper(n - 2) + helper(n - 3)
+            if n not in cache:
+                cache[n] = helper(n - 1) + helper(n - 2) + helper(n - 3)
+            return cache[n]
 
         return helper(n)
