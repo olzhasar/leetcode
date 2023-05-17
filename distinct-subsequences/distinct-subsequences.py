@@ -3,10 +3,7 @@ import functools
 
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
-        m = len(s)
-        n = len(t)
-
-        total = [0]
+        m, n = len(s), len(t)
 
         @functools.cache
         def backtrack(current=0, start=0):
