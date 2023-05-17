@@ -5,7 +5,10 @@
 var compose = function(functions) {
 	return function(x) {
         let result = x;
-        functions.reverse().forEach(fn => result = fn(result));
+
+        for (const fn of functions.reverse()) {
+            result = fn(result);
+        }
         return result;
     }
 };
