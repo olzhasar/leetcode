@@ -3,16 +3,15 @@
  * @return {Function}
  */
 var once = function(fn) {
-    let counter = 0;
+    let called = false;
 
     return function(...args){
-        if (counter > 0) {
+        if (called) {
             return;
-        } else {
-            counter++;
-            return fn(...args);
         }
-        
+
+        called = true;
+        return fn(...args);
     }
 };
 
