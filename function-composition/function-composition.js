@@ -4,7 +4,7 @@
  */
 var compose = function(functions) {
 	return function(x) {
-        result = x;
+        let result = x;
         functions.reverse().forEach(fn => result = fn(result));
         return result;
     }
