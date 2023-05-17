@@ -2,15 +2,15 @@
  * @param {Function} fn
  */
 function memoize(fn) {
-    const memo = {};
+    const memo = new Map();
 
     return function(...args) {
         const key = JSON.stringify(args);
 
-        if (!(key in memo)) {
-            memo[key] = fn(...args);
+        if (!memo.has(key)) {
+            memo.set(key, fn(...args));
         }
-        return memo[key];
+        return memo.get(key);
     }
 }
 
