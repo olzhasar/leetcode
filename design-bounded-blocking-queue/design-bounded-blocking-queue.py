@@ -3,14 +3,12 @@ import threading
 
 
 class BoundedBlockingQueue(object):
-
     def __init__(self, capacity: int):
         self._capacity = capacity
         self._size = 0
         self.queue = deque()
         self.cv = threading.Condition()
         
-
     def enqueue(self, element: int) -> None:
         with self.cv:
             self.cv.wait_for(lambda: self._size < self._capacity)
@@ -25,8 +23,6 @@ class BoundedBlockingQueue(object):
             self._size -= 1
             self.cv.notify()
             return val
-            
-        return val
         
     def size(self) -> int:
         return self._size
