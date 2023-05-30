@@ -6,27 +6,27 @@ class BoundedBlockingQueue(object):
 
     def __init__(self, capacity: int):
         self._capacity = capacity
+        self._size = 0
         self.queue = deque()
         self.cv = threading.Condition()
         
 
     def enqueue(self, element: int) -> None:
         with self.cv:
-            while self._capacity <= 0:
-                self.cv.wait()
+            self.cv.wait_for(lambda: self._size < self._capacity)
             self.queue.appendleft(element)
-            self._capacity -= 1
-            self.cv.notify_all()
+            self._size += 1
+            self.cv.notify()
 
     def dequeue(self) -> int:
         with self.cv:
-            while not self.queue:
-                self.cv.wait()
+            self.cv.wait_for(lambda: self._size > 0)
             val = self.queue.pop()
-            self._capacity += 1
-            self.cv.notify_all()
+            self._size -= 1
+            self.cv.notify()
+            return val
             
         return val
         
     def size(self) -> int:
-        return len(self.queue)
+        return self._size
