@@ -6,20 +6,18 @@ class Solution:
         def check_num(r, c, k):
             # check column
             for i in range(9):
-                if board[i][c] == k:
-                    return False
-
-            # check row
-            for j in range(9):
-                if board[r][j] == k:
+                if board[i][c] == k or board[r][i] == k:
                     return False
 
             # check square
             min_row = (r // 3) * 3
-            min_col = (c // 3) * 3
+            max_row = min_row + 3
 
-            for i in range(min_row, min_row + 3):
-                for j in range(min_col, min_col + 3):
+            min_col = (c // 3) * 3
+            max_col = min_col + 3
+
+            for i in range(min_row, max_row):
+                for j in range(min_col, max_col):
                     if board[i][j] == k:
                         return False
 
