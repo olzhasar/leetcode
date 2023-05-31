@@ -3,37 +3,38 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        def check_num(r, c, k):
-            # check row and column
-            for i in range(9):
-                if board[i][c] == k or board[r][i] == k:
-                    return False
+        rows = [set() for _ in range(9)]
+        cols = [set() for _ in range(9)]
+        boxes = [set() for _ in range(9)]
 
-            # check square
-            min_row = r - r % 3
-            max_row = min_row + 3
+        _get_box_num = lambda r, c:  r // 3 * 3 + c // 3
 
-            min_col = c - c % 3
-            max_col = min_col + 3
-
-            for i in range(min_row, max_row):
-                for j in range(min_col, max_col):
-                    if board[i][j] == k:
-                        return False
-
-            return True
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] != ".":
+                    rows[r].add(board[r][c])
+                    cols[c].add(board[r][c])
+                    boxes[_get_box_num(r, c)].add(board[r][c])
 
         def backtrack() -> bool:
             for r in range(9):
                 for c in range(9):
                     if board[r][c] == ".":
+                        box_num = _get_box_num(r, c)
                         for k in range(1, 10):
-                            if not check_num(r, c, str(k)):
+                            val = str(k)
+                            if val in rows[r] or val in cols[c] or val in boxes[box_num]:
                                 continue
-                            board[r][c] = str(k)
+                            board[r][c] = val
+                            rows[r].add(val)
+                            cols[c].add(val)
+                            boxes[box_num].add(val)
                             if backtrack():
                                 return True
-                        board[r][c] = "."
+                            board[r][c] = "."
+                            rows[r].discard(val)
+                            cols[c].discard(val)
+                            boxes[box_num].discard(val)
                         return False
 
             return True
