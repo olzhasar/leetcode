@@ -10,10 +10,10 @@ class Solution:
                     return False
 
             # check square
-            min_row = (r // 3) * 3
+            min_row = r - r % 3
             max_row = min_row + 3
 
-            min_col = (c // 3) * 3
+            min_col = c - c % 3
             max_col = min_col + 3
 
             for i in range(min_row, max_row):
