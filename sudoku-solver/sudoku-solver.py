@@ -4,7 +4,7 @@ class Solution:
         Do not return anything, modify board in-place instead.
         """
         def check_num(r, c, k):
-            # check column
+            # check row and column
             for i in range(9):
                 if board[i][c] == k or board[r][i] == k:
                     return False
