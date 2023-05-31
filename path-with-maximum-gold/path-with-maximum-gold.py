@@ -3,7 +3,7 @@ class Solution:
         m = len(grid)
         n = len(grid[0])
         
-        visited = set()
+        visited = [[0] * n for _ in range(m)]
         
         directions = (
             (0, 1),
@@ -15,17 +15,17 @@ class Solution:
         def get_paths(i, j):
             for di, dj in directions:
                 ni, nj = i + di, j + dj
-                if (0 <= ni < m) and (0 <= nj < n) and grid[ni][nj] != 0 and (ni, nj) not in visited:
+                if (0 <= ni < m) and (0 <= nj < n) and grid[ni][nj] != 0 and not visited[ni][nj]:
                     yield ni, nj
         
         def dfs(i, j):
-            visited.add((i, j))
+            visited[i][j] = 1
             
             max_path = 0
             for ni, nj in get_paths(i, j):
                 max_path = max(max_path, dfs(ni, nj))
             
-            visited.remove((i, j))
+            visited[i][j] = 0
             
             return grid[i][j] + max_path
         
