@@ -3,7 +3,7 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        def check_num(board, r, c, k):
+        def check_num(r, c, k):
             # check column
             for i in range(9):
                 if board[i][c] == k:
@@ -28,19 +28,19 @@ class Solution:
 
             return True
 
-        def backtrack(board) -> bool:
+        def backtrack() -> bool:
             for r in range(9):
                 for c in range(9):
                     if board[r][c] == ".":
                         for k in range(1, 10):
-                            if not check_num(board, r, c, str(k)):
+                            if not check_num(r, c, str(k)):
                                 continue
                             board[r][c] = str(k)
-                            if backtrack(board):
+                            if backtrack():
                                 return True
                             board[r][c] = "."
                         return False
 
             return True
 
-        backtrack(board)
+        backtrack()
