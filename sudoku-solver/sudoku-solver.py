@@ -33,7 +33,7 @@ class Solution:
                             board[r][c] = str(k)
                             if backtrack():
                                 return True
-                            board[r][c] = "."
+                        board[r][c] = "."
                         return False
 
             return True
