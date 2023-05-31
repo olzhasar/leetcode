@@ -21,12 +21,9 @@ class Solution:
                 i += 1
             else:
                 output.append([max(first[0], second[0]), min(first[1], second[1])])
-                if (second[1] > first[1]):
+                if second[1] >= first[1]:
                     i += 1
-                elif (first[1] > second[1]):
-                    j += 1
-                else:
-                    i += 1
+                elif first[1] >= second[1]:
                     j += 1
                     
         return output
